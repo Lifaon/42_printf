@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/02/22 00:01:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/02/24 14:30:03 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <unistd.h>
+# include "defines.h"
+# include "structs.h"
 
-int ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
+void	parse_param(t_param *param, int *i);
+void	print_buff(t_param *param);
+void	add_char_to_buff(t_param *param, char c);
+
 
 #endif

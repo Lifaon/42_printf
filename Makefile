@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/02/21 23:49:15 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/02/24 14:35:18 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ EOC = \033[37m
 NAME = libftprintf.a
 DIR_NAME = ft_printf
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 INC = -I $(INC_DIR)
 INC_DIR = includes
@@ -31,7 +31,9 @@ OBJS_DIR = objs
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 SRCS_DIR = srcs
-SRCS = ft_printf.c
+SRCS =	ft_printf.c \
+		buffer.c \
+		param.c
 
 .PHONY = all $(OBJS_DIR) $(NAME) del_objs del_exe clean fclean re exe
 
@@ -64,9 +66,14 @@ fclean: clean del_exe
 
 re: fclean all
 
-exe: del_objs del_exe all
+debug: change_cflag all
+
+re_debug: fclean debug
+
+change_cflag:
+	@$(eval CFLAGS = -fsanitize=address)
 
 ### TO DELETE BEFORE CORRECTION ###
 test:
-	@echo "$(GRE)gcc main.c -L . -lftprintf$(EOC)"
-	@gcc main.c -L. -lftprintf
+	@echo "$(GRE)gcc $(CFLAGS) main.c -L. -lftprintf$(EOC)"
+	@gcc $(CFLAGS) main.c -L. -lftprintf
