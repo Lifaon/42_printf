@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/02/24 14:30:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/02/28 23:58:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,36 @@ void	parse_fmt(t_param *param)
 	while(param->fmt[i])
 	{
 		if (param->fmt[i] != '%')
-		{
-			param->buff[param->buff_len++] = param->fmt[i++];
-			if (param->buff_len == BUFF_SIZE)
-				print_buff(param);
-		}
+			add_char_to_buff(param, param->fmt[i++]);
 		else
-		{
 			parse_param(param, &i);
-		}
 	}
 	if (param->buff_len)
 		print_buff(param);
+}
+
+void	init_func_ptr(t_param *param)
+{
+	param->func[0].type = 'c';
+	param->func[0].f = c;
+	param->func[1].type = 's';
+	param->func[1].f = s;
+	// param->func[2].type = 'p';
+	// param->func[2].f = p;
+	// param->func[3].type = 'd';
+	// param->func[3].f = i;
+	// param->func[4].type = 'i';
+	// param->func[4].f = i;
+	// param->func[5].type = 'u';
+	// param->func[5].f = u;
+	// param->func[6].type = 'o';
+	// param->func[6].f = u;
+	// param->func[7].type = 'x';
+	// param->func[7].f = u;
+	// param->func[8].type = 'X';
+	// param->func[8].f = u;
+	// param->func[9].type = 'f';
+	// param->func[9].f = f;
 }
 
 int		ft_printf(const char *fmt, ...)
@@ -40,8 +58,10 @@ int		ft_printf(const char *fmt, ...)
 
 	param.fmt = (char *)fmt;
 	param.buff_len = 0;
+	param.buff_read = 0;
+	init_func_ptr(&param);
 	va_start(param.ap, fmt);
 	parse_fmt(&param);
 	va_end(param.ap);
-	return (0);
+	return (param.buff_read);
 }

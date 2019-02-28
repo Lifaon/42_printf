@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/02/24 14:30:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:47:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "defines.h"
 # include "structs.h"
+# include "parse.h"
 
 int		ft_printf(const char *format, ...);
 void	parse_param(t_param *param, int *i);

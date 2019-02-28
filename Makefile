@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/02/24 14:35:18 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/02/28 19:32:24 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ YEL = \033[33m
 BLU = \033[34m
 MAG = \033[35m
 CYA = \033[36m
-EOC = \033[37m
+EOC = \033[39m
 
 NAME = libftprintf.a
 DIR_NAME = ft_printf
@@ -27,13 +27,17 @@ INC = -I $(INC_DIR)
 INC_DIR = includes
 
 OBJS = $(SRCS:.c=.o)
-OBJS_DIR = objs
+OBJS_DIR = ./objs
+OBJS_SUB_DIRS = parse
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 SRCS_DIR = srcs
 SRCS =	ft_printf.c \
 		buffer.c \
-		param.c
+		param.c \
+		\
+		parse/c.c \
+		parse/s.c
 
 .PHONY = all $(OBJS_DIR) $(NAME) del_objs del_exe clean fclean re exe
 
@@ -45,6 +49,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
 
 $(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "ar rc $(YEL)$(NAME)$(EOC) $(OBJS_PRE)"

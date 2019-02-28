@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/01 00:03:25 by mlantonn         ###   ########.fr       */
+/*   Created: 2019/02/28 17:44:10 by mlantonn          #+#    #+#             */
+/*   Updated: 2019/02/28 17:50:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...);
+#ifndef PARSE_H
+# define PARSE_H
 
-#include <stdio.h>
+# include "structs.h"
 
-int main(void)
-{
-	char *fmt = "Je vais afficher trois lettres : %c, %c, %c\n\
-Et voilà une phrase : %s, et une autre : %s\n";
-	char *str = "une phrase", *str2 = "hello world";
-	int	ret, ret2;
+void	c(t_param *param);
+void	s(t_param *param);
+void	p(t_param *param);
+void	i(t_param *param);
+void	u(t_param *param);
+void	f(t_param *param);
 
-	ret = ft_printf(fmt, 'A', 'B', 'C', str, str2);
-	ret2 = printf(fmt, 'A', 'B', 'C', str, str2);
-	printf("%d / %d\n", ret, ret2);
-	return (0);
-}
+#endif

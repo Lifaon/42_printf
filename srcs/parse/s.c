@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/01 00:03:25 by mlantonn         ###   ########.fr       */
+/*   Created: 2019/02/28 17:42:37 by mlantonn          #+#    #+#             */
+/*   Updated: 2019/02/28 19:25:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...);
+#include "ft_printf.h"
 
-#include <stdio.h>
-
-int main(void)
+void	s(t_param *param)
 {
-	char *fmt = "Je vais afficher trois lettres : %c, %c, %c\n\
-Et voilà une phrase : %s, et une autre : %s\n";
-	char *str = "une phrase", *str2 = "hello world";
-	int	ret, ret2;
+	char	*str;
+	int		i;
 
-	ret = ft_printf(fmt, 'A', 'B', 'C', str, str2);
-	ret2 = printf(fmt, 'A', 'B', 'C', str, str2);
-	printf("%d / %d\n", ret, ret2);
-	return (0);
+	i = -1;
+	str = (char *)va_arg(param->ap, char *);
+	while (str[++i])
+		add_char_to_buff(param, str[i]);
 }
