@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 00:14:32 by mlantonn         ###   ########.fr       */
+/*   Created: 2019/03/02 15:46:36 by mlantonn          #+#    #+#             */
+/*   Updated: 2019/03/02 16:46:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+long long	ft_atoi(char const *str)
+{
+	long long nb;
+	long long sign;
 
-# define FALSE 0
-# define TRUE 1
-
-# define BUFF_SIZE 4096
-
-# define TYPE_NB 4
-
-# define SHORTCHAR 1
-# define SHORT 2
-# define LONG 3
-# define LONGLONG 4
-
-#endif
+	nb = 0;
+	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
+		++str;
+	sign = *str == '-' ? -1 : 1;
+	if (*str == '-' || *str == '+')
+		++str;
+	while (*str >= '0' && *str <= '9')
+		nb = nb * 10 + (*str++ - '0');
+	if (nb < 0)
+	{
+		nb = 9223372036854775807;
+		return (sign == 1 ? nb : nb + 1);
+	}
+	return (nb * sign);
+}

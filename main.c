@@ -6,23 +6,36 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/01 00:03:25 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/06 01:22:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
+long long	ft_atoi(char const *str);
+void		ft_itoa(long long nb, char (*buff)[21]);
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
 	char *fmt = "Je vais afficher trois lettres : %c, %c, %c\n\
-Et voilà une phrase : %s, et une autre : %s\n";
-	char *str = "une phrase", *str2 = "hello world";
+Et voilà une phrase : %s, et une autre : %s, voilà\n\
+Maintenant, voilà un chiffre: %8hd, tada !\n";
+	char *str = "une phrase";
+	char *str2 = "hello world";
+	long long nb = 45000;
 	int	ret, ret2;
+	ret = printf(fmt, 'A', 'B', 'C', str, str2, nb);
+	ret2 = ft_printf(fmt, 'A', 'B', 'C', str, str2, nb);
+	printf("%d\n%d\n", ret, ret2);
 
-	ret = ft_printf(fmt, 'A', 'B', 'C', str, str2);
-	ret2 = printf(fmt, 'A', 'B', 'C', str, str2);
-	printf("%d / %d\n", ret, ret2);
+	// long long nb = 0;
+	// char buff[21];
+	//
+	// ft_itoa(nb, &buff);
+	// printf("%lld\n", nb);
+	// printf("%s\n", buff);
+
 	return (0);
 }

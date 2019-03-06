@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/02/28 23:58:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/05 23:40:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	init_func_ptr(t_param *param)
 	param->func[1].f = s;
 	// param->func[2].type = 'p';
 	// param->func[2].f = p;
-	// param->func[3].type = 'd';
-	// param->func[3].f = i;
-	// param->func[4].type = 'i';
-	// param->func[4].f = i;
+	param->func[2].type = 'd';
+	param->func[2].f = i;
+	param->func[3].type = 'i';
+	param->func[3].f = i;
 	// param->func[5].type = 'u';
 	// param->func[5].f = u;
 	// param->func[6].type = 'o';
