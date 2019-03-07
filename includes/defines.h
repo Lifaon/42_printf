@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 00:14:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/06 23:45:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define BUFF_SIZE 4096
 
-# define TYPE_NB 4
+# define TYPE_NB 8
 
 # define SHORTCHAR 1
 # define SHORT 2

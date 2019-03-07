@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 00:36:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/06 23:41:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	find_type(t_param *param, int *i)
 	while (++j < TYPE_NB)
 		if (param->fmt[*i] == param->func[j].type)
 		{
-			++(*i);
+			param->type = param->fmt[(*i)++];
 			param->func[j].f(param);
 			return ;
 		}

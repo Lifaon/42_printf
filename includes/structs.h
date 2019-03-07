@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/02 17:23:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/06 23:43:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define STRUCTS_H
 
 # include "defines.h"
+
+typedef unsigned long long	t_ull;
 
 typedef struct		s_flag
 {

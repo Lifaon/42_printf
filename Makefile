@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/03/05 23:46:41 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/03/08 00:06:36 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,13 @@ SRCS =	ft_printf.c \
 		\
 		parse/ft_atoi.c \
 		parse/ft_itoa.c \
+		parse/ft_utoa_base.c \
 		parse/c.c \
 		parse/i.c \
-		parse/s.c
+		parse/o.c \
+		parse/s.c \
+		parse/u.c \
+		parse/x.c
 
 .PHONY = all $(OBJS_DIR) $(NAME) del_objs del_exe clean fclean re exe
 
