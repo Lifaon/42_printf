@@ -12,33 +12,33 @@
 
 #include "ft_printf.h"
 
-static void	reset_param(t_param *param)
-{
-	param->flag.sharp = FALSE;
-	param->flag.zero = FALSE;
-	param->flag.minus = FALSE;
-	param->flag.plus = FALSE;
-	param->flag.space = FALSE;
-	param->width = 0;
-	param->preci = -1;
-	param->size = 0;
-}
-
 static void	print_param(t_param *param)
 {
+	char	buff[21];
+	int		i;
+
 	add_char_to_buff(param, '%');
 	if (param->flag.sharp)
 		add_char_to_buff(param, '#');
-	if (param->flag.plus)
-		add_char_to_buff(param, '+');
-	else if (param->flag.space)
-		add_char_to_buff(param, ' ');
-	if (param->flag.minus)
-		add_char_to_buff(param, '-');
-	else if (param->flag.zero)
-		add_char_to_buff(param, '0');
-	// print width
-	// print precision
+	if (param->flag.plus || param->flag.space)
+		add_char_to_buff(param, param->flag.plus ? '+' : ' ');
+	if (param->flag.minus || param->flag.zero)
+		add_char_to_buff(param, param->flag.minus ? '-' : '0');
+	if (param->width > 0)
+	{
+		i = -1;
+		ft_itoa((long long)param->width, &buff);
+		while (buff[++i])
+			add_char_to_buff(param, buff[i]);
+	}
+	if (param->preci > -1)
+	{
+		i = -1;
+		add_char_to_buff(param, '.');
+		ft_itoa((long long)param->preci, &buff);
+		while (buff[++i])
+			add_char_to_buff(param, buff[i]);
+	}
 }
 
 static int	find_flag(t_param *param, char c)
@@ -88,25 +88,33 @@ static void	find_type(t_param *param, int *i)
 	}
 	j = -1;
 	while (++j < TYPE_NB)
+	{
 		if (param->fmt[*i] == param->func[j].type)
 		{
 			param->type = param->fmt[(*i)++];
 			param->func[j].f(param);
 			return ;
 		}
+		else if (param->fmt[*i] == '%')
+		{
+			add_char_to_buff(param, param->fmt[(*i)++]);
+			return ;
+		}
+	}
 	print_param(param);
 }
 
 void		parse_param(t_param *param, int *i)
 {
-	reset_param(param);
+	param->flag.sharp = FALSE;
+	param->flag.zero = FALSE;
+	param->flag.minus = FALSE;
+	param->flag.plus = FALSE;
+	param->flag.space = FALSE;
+	param->width = 0;
+	param->preci = -1;
+	param->size = 0;
 	++(*i);
-	if (param->fmt[*i] == '%')
-	{
-		add_char_to_buff(param, '%');
-		++(*i);
-		return ;
-	}
 	while (find_flag(param, param->fmt[*i]))
 		++(*i);
 	find_width_preci(param, i);

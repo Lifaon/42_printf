@@ -40,14 +40,18 @@ static void print_width(int len, char c, t_param *param)
 			++len;
 			add_char_to_buff(param, c);
 		}
-		if (param->preci >= 0 && c == ' ')
+		if (len + tmp == param->width)
 			param->width = 0;
 	}
-	if (c == '0' && param->preci >= 0)
+}
+
+static void print_preci(int len, t_param *param)
+{
+	if (param->preci >= 0)
 		while (len < param->preci)
 		{
 			++len;
-			add_char_to_buff(param, c);
+			add_char_to_buff(param, '0');
 		}
 }
 
@@ -72,12 +76,13 @@ void		x(t_param *param)
 	len = 0;
 	while (buff[len])
 		++len;
-	if (len < param->width && !param->flag.minus && (!param->flag.zero
-		|| (param->preci >= 0)))
+	if (len < param->width && !param->flag.minus
+		&& (!param->flag.zero || (param->preci >= 0)))
 		print_width(len, ' ', param);
 	add_sharp(param);
-	if ((len < param->width && !param->flag.minus) || param->preci >= 0)
+	if (len < param->width && !param->flag.minus && param->flag.zero)
 		print_width(len, '0', param);
+	print_preci(len, param);
 	i = 0;
 	while (buff[i])
 		add_char_to_buff(param, buff[i++]);

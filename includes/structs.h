@@ -42,8 +42,8 @@ typedef struct		s_param
 	long long		buff_read;
 	va_list			ap;
 	t_flag			flag;
-	long long		width;
-	long long		preci;
+	int				width;
+	int				preci;
 	int				size;
 	char			type;
 	t_func			func[TYPE_NB];

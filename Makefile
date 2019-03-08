@@ -88,4 +88,4 @@ change_cflag:
 ### TO DELETE BEFORE CORRECTION ###
 test:
 	@echo "$(GRE)gcc $(CFLAGS) main.c -L. -lftprintf$(EOC)"
-	@gcc $(CFLAGS) main.c -L. -lftprintf
+	@gcc $(CFLAGS) -w main.c -L. -lftprintf -I includes
