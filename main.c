@@ -118,10 +118,9 @@ int			main(int ac, char **av)
 	}
 	else
 	{
-		ret[0] = printf(   "13) Formatage ultracompose [-6.3x] : {%#0 +-4.12ll x}\n", 0x12345);
-		ret[1] = ft_printf("=>  Formatage ultracompose [-6.3x] : {%#0 +-4.12ll x}\n", 0x12345);
-		if (ret[0] != ret[1])
-			printf("ERROR: %d / %d\n", ret[0], ret[1]);
+		ret[0] = printf(   "%-020p\n", &i);
+		ret[1] = ft_printf("%-020p\n", &i);
+		printf("%d / %d\n", ret[0], ret[1]);
 	}
 	return(0);
 }

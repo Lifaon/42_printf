@@ -42,6 +42,7 @@ SRCS =	ft_printf.c \
 		parse/c.c \
 		parse/i.c \
 		parse/o.c \
+		parse/p.c \
 		parse/s.c \
 		parse/u.c \
 		parse/x.c
