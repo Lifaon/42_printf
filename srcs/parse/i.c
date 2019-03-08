@@ -26,37 +26,68 @@ static void	get_sized_param(long long *nb, t_param *param)
 		*nb = (long long)va_arg(param->ap, int);
 }
 
-static void print_width(int *len, char c, t_param *param)
+static void print_width(int len, char c, long long nb, t_param *param)
 {
-	while ((*len)++ < param->width)
-		add_char_to_buff(param, c);
+	int tmp;
+
+	tmp = nb >= 0 && (param->flag.plus || param->flag.space) ? 1 : 0;
+	if (param->preci >= 0 && len < param->preci)
+		tmp += param->preci - len;
+	if (len + tmp < param->width)
+	{
+		while (len + tmp < param->width)
+		{
+			++len;
+			add_char_to_buff(param, c);
+		}
+		if (len + tmp == param->width)
+			param->width = 0;
+	}
+}
+
+static void print_preci(int len, t_param *param)
+{
+	if (param->preci >= 0)
+		while (len < param->preci)
+		{
+			++len;
+			add_char_to_buff(param, '0');
+		}
+}
+
+static void	add_pos(t_param *param, long long nb)
+{
+	if (nb >= 0)
+	{
+		if (param->flag.plus)
+			add_char_to_buff(param, '+');
+		else if (param->flag.space)
+			add_char_to_buff(param, ' ');
+	}
 }
 
 void	i(t_param *param)
 {
 	long long	nb;
+	char		buff[21];
 	int			len;
 	int			i;
-	char		buff[21];
 
 	get_sized_param(&nb, param);
 	ft_itoa(nb, &buff);
 	len = 0;
 	while (buff[len])
 		++len;
-	if (nb >= 0 && (param->flag.plus || param->flag.space))
-		++len;
-	if (len < param->width && !param->flag.minus && !param->flag.zero)
-		print_width(&len, ' ', param);
-	if (nb >= 0 && (param->flag.plus || param->flag.space))
-		add_char_to_buff(param, param->flag.plus ? '+' : ' ');
+	if (len < param->width && !param->flag.minus
+		&& (!param->flag.zero || (param->preci >= 0)))
+		print_width(len, ' ', nb, param);
+	add_pos(param, nb);
+	if (len < param->width && !param->flag.minus && param->flag.zero)
+		print_width(len, '0', nb, param);
+	print_preci(len, param);
 	i = 0;
-	if (nb < 0)
-		add_char_to_buff(param, buff[i++]);
-	if (len < param->width && !param->flag.minus)
-		print_width(&len, '0', param);
 	while (buff[i])
 		add_char_to_buff(param, buff[i++]);
 	if (len < param->width && param->flag.minus)
-		print_width(&len, ' ', param);
+		print_width(len, ' ', nb, param);
 }
