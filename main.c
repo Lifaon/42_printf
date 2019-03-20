@@ -103,24 +103,112 @@ static void	test(void)
 	ft_printf("=>   Test de pile [c c] : {%c} {%c}\n", 0x4142434444434241);
 }
 
+int		ft_utoa(unsigned long long nb, char (*buff)[20])
+{
+	unsigned long long tmp;
+	int		ret;
+	int		len;
+
+	len = 1;
+	tmp = nb;
+	while (tmp >= 10)
+	{
+		tmp /= 10;
+		++len;
+	}
+	ret = len;
+	while (len-- > 0)
+	{
+		(*buff)[len] = '0' + nb % 10;
+		nb /= 10;
+	}
+	(*buff)[ret] = '\0';
+	return ret;
+}
+
+long double ft_10pow(int n)
+{
+	long double nb;
+
+	nb = 1.0L;
+	if (n == 0)
+		return (1.0L);
+	if (n > 0)
+		while (n-- > 0)
+			nb *= 10.0L;
+	else
+		while (n++ < 0)
+			nb /= 10.0L;
+	return (nb);
+}
+
+void		add_mantissa(char (*str)[4096], long double nb, int precision, int len)
+{
+	unsigned long long tmp;
+	char	buff[20];
+	int		scale;
+	int		i;
+	int		j;
+
+	i = 0;
+	scale = 19;
+	while (i < precision) {
+		if (i + scale >= precision) {
+			scale = precision - i;
+			nb += 0.5L * ft_10pow(-scale);
+		}
+		tmp = (unsigned long long)(nb * ft_10pow(scale));
+		j = ft_utoa(tmp, &buff);
+		while (j++ < scale)
+			(*str)[len + i++] = '0';
+		j = 0;
+		while (buff[j])
+			(*str)[len + i++] = buff[j++];
+		j = 0;
+		while (j++ < scale) {
+			nb *= 10.0L;
+			nb -= (long double)(char)nb;
+		}
+	}
+}
+
 int			main(int ac, char **av)
 {
-	char	cmd[] = "-g";
-	int		ret[2];
-	int		i = 0;
+	float				nb = 0.00000000499;
+	char				str1[4096], str2[4096];
+	int					cmp;
+	int					i, j, k;
+	int					precision = 19, length = 9;
 
-	if (ac > 1)
-	{
-		while (av[1][i] && av[1][i] == cmd[i])
-			++i;
-		if (av[1][i] == cmd[i])
-			test();
+	sprintf(str1, "%.*f\n", length, nb);
+	sprintf(str2, "0.");
+	add_mantissa(&str2, nb, length, 2);
+	i = 2;
+	cmp = -1;
+	while (str1[i] && str2[i]) {
+		if (str1[i] != str2[i]) {
+			cmp = i - 2;
+			break ;
+		}
+		++i;
 	}
-	else
-	{
-		ret[0] = printf(   "%-020p\n", &i);
-		ret[1] = ft_printf("%-020p\n", &i);
-		printf("%d / %d\n", ret[0], ret[1]);
-	}
+	printf("%s%s\n%d\n%.*s\n", str1, str2, cmp, cmp + 2, str2);
+	// char	cmd[] = "-g";
+	// int		ret[2];
+	// int		i = 0;
+	//
+	// if (ac > 1)
+	// {
+	// 	while (av[1][i] && av[1][i] == cmd[i])
+	// 		++i;
+	// 	if (av[1][i] == cmd[i])
+	// 		test();
+	// }
+	// else
+	// {
+	// 	ret[0] = printf(   "%-020p\n", &i);
+	// 	ret[1] = ft_printf("%-020p\n", &i);
+	// 	printf("%d / %d\n", ret[0], ret[1]);
+	// }
 	return(0);
 }
