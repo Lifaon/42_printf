@@ -20,16 +20,17 @@ void	b(t_param *param)
 
 	nb = va_arg(param->ap, t_ull);
 	i = 64;
-	(*buff)[i] = '\0';
+	buff[i] = '\0';
 	while (i-- > 0)
 	{
-		(*buff)[i] = '0' + (nb % 2);
+		buff[i] = '0' + (nb % 2);
 		nb /= 2;
 	}
+	i = 0;
 	while (buff[i])
 	{
 		add_char_to_buff(param, buff[i++]);
-		if (i % 8 == 0)
+		if (i % 8 == 0 && i != 64)
 			add_char_to_buff(param, ' ');
 	}
 }
