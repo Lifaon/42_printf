@@ -13,6 +13,9 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include "defines.h"
 
 typedef unsigned long long	t_ull;
@@ -37,9 +40,14 @@ typedef struct		s_func
 typedef struct		s_param
 {
 	char			*fmt;
+	char			*str;
+	FILE			*stream;
+	int				fd;
 	char			buff[BUFF_SIZE + 1];
 	long long		buff_len;
 	long long		buff_read;
+	size_t			buff_max;
+	int				is_maxed;
 	va_list			ap;
 	t_flag			flag;
 	int				width;

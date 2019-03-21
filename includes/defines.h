@@ -18,7 +18,7 @@
 
 # define BUFF_SIZE 4096
 
-# define TYPE_NB 9
+# define TYPE_NB 11
 
 # define SHORTCHAR 1
 # define SHORT 2

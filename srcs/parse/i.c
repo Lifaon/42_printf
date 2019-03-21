@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "conv.h"
 
 static void	get_sized_param(long long *nb, t_param *param)
 {

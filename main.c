@@ -10,205 +10,134 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdio.h>
+#include <fcntl.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "ft_printf.h"
 
-static void	test(void)
+void		test_vprintf_functions(int mark, ...)
 {
-	int		ret[2];
-	char	*str = "astek";
+	va_list ap;
+	int		fd;
+	FILE	*stream;
+	char	*str1;
+	char	*str2;
 
-	printf("##### Tests simple : 1 point par test reussi #####\n");
-	printf(   "0)  Modulo [%%] : {%%}\n");
-	ft_printf("=>  Modulo [%%] : {%%}\n");
-	printf(   "1) Nombre signe [d] : {%d}\n", 42);
-	ft_printf("=>  Nombre signe [d] : {%d}\n", 42);
-	printf(   "2) Nombre signe [i] : {%i}\n", 42);
-	ft_printf("=>  Nombre signe [i] : {%i}\n", 42);
-	printf(   "3) Nombre octal [o] : {%o}\n", 012345);
-	ft_printf("=>  Nombre octal [o] : {%o}\n", 012345);
-	printf(   "4) Nombre non signe [u] : {%u}\n", 42);
-	ft_printf("=>  Nombre non signe [u] : {%u}\n", 42);
-	printf(   "5) Nombre hexadecimal [x] : {%x}\n", 0x12345);
-	ft_printf("=>  Nombre hexadecimal [x] : {%x}\n", 0x12345);
-	printf(   "6) Nombre hexadecimal [X] : {%X}\n", 0x12345);
-	ft_printf("=>  Nombre hexadecimal [X] : {%X}\n", 0x12345);
-	printf(   "7) Caractere [c] : {%c}\n", 42);
-	ft_printf("=>  Caractere [c] : {%c}\n", 42);
-	printf(   "8) Chaine [s] : {%s}\n", str);
-	ft_printf("=>  Chaine [s] : {%s}\n", str);
-	printf(   "9) Pointeur [p] : {%p}\n", str);
-	ft_printf("=>  Pointeur [p] : {%p}\n", str);
-	printf(   "10) Mauvais parametre [k] : {%k}\n", 42);
-	ft_printf("=>   Mauvais parametre [k] : {%k}\n", 42);
+	va_start(ap, mark);
 
-	printf("Appuyez sur [entree] pour continuer...\n");
-	getchar();
+	// vprintf
+	vprintf("Test du vprintf: %d / %d / %d\n", ap);
+	ft_vprintf("Test du vprintf: %d / %d / %d\n", ap);
 
-	printf("\n##### Tests pour verifier : -1pt par resultat errone #####\n");
-	printf(   "1)  Affichage multiple [d d d] : {%d} {%d} {%d}\n", 0, 42, 2147483647);
-	ft_printf("=>  Affichage multiple [d d d] : {%d} {%d} {%d}\n", 0, 42, 2147483647);
-	printf(   "2) Affichage multiple [d d d] : {%d} {%d} {%d}\n", -0, -42, -2147483648);
-	ft_printf("=>  Affichage multiple [d d d] : {%d} {%d} {%d}\n", -0, -42, -2147483648);
-	printf(   "3) Affichage multiple [c d s] : {%c} {%d} {%s}\n", 42, 42, str);
-	ft_printf("=>  Affichage multiple [c d s] : {%c} {%d} {%s}\n", 42, 42, str);
-	printf(   "4) Affichage multiple [X p d] : {%X} {%p} {%d}\n", 0x12345, str, 42);
-	ft_printf("=>  Affichage multiple [X p d] : {%X} {%p} {%d}\n", 0x12345, str, 42);
-	printf(   "5) Affichage long [d d d ...] : %d %d %d %d %d %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0xA, 0xB, 0xC);
-	ft_printf("=>  Affichage long [d d d ...] : %d %d %d %d %d %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0xA, 0xB, 0xC);
-
-	printf("Appuyez sur une touche pour continuer...\n");
-	getchar();
-
-	printf("\n##### Formatage : 1pt pour 3 tests reussis  #####\n");
-	printf(   "1) Formatage simple [#d] : {%#d}\n", 42);
-	ft_printf("=>  Formatage simple [#d] : {%#d}\n", 42);
-	printf(   "2) Formatage simple [#x] : {%#x}\n", 0x12345);
-	ft_printf("=>  Formatage simple [#x] : {%#x}\n", 0x12345);
-	printf(   "3) Formatage simple [#o] : {%#o}\n", 012345);
-	ft_printf("=>  Formatage simple [#o] : {%#o}\n", 012345);
-	printf(   "4) Formatage simple [0d] : {%0d}\n", 42);
-	ft_printf("=>  Formatage simple [0d] : {%0d}\n", 42);
-	printf(   "5) Formatage simple [5d] : {%5d}\n", 42);
-	ft_printf("=>  Formatage simple [5d] : {%5d}\n", 42);
-	printf(   "6) Formatage simple [ d] : {% d}\n", 42);
-	ft_printf("=>  Formatage simple [ d] : {% d}\n", 42);
-	printf(   "7) Formatage simple [-d] : {%-d}\n", 42);
-	ft_printf("=>  Formatage simple [-d] : {%-d}\n", 42);
-	printf(   "8) Formatage simple [+d] : {%+d}\n", 42);
-	ft_printf("=>  Formatage simple [+d] : {%+d}\n", 42);
-	printf(   "9) Formatage simple [+d] : {%+d}\n", -42);
-	ft_printf("=>  Formatage simple [+d] : {%+d}\n", -42);
-	printf(   "10) Formatage multiple [ 5d] : {% 5d}\n", 42);
-	ft_printf("=>   Formatage multiple [ 5d] : {% 5d}\n", 42);
-	printf(   "11) Formatage multiple [-32o] : {%-32o}\n", 012345);
-	ft_printf("=>   Formatage multiple [-32o] : {%-32o}\n", 012345);
-	printf(   "12) Formatage multiple [-10+d] : {%+-10d}\n", 12345);
-	ft_printf("=>   Formatage multiple [-10+d] : {%+-10d}\n", 12345);
-	printf(   "13) Formatage ultracompose [-6.3x] : {%-6.3x}\n", 0x12345);
-	ft_printf("=>   Formatage ultracompose [-6.3x] : {%-6.3x}\n", 0x12345);
-	printf(   "14) Formatage ultracompose [#-6.3d] : {%#-6.3d}\n", -2147483648);
-	ft_printf("=>   Formatage ultracompose [#-6.3d] : {%#-6.3d}\n", -2147483648);
-	printf(   "15) Formatage long [p x lx] : {%p} {%x} {%lx}\n", 0x42424242, 0x42424242, 0x42424242);
-	ft_printf("=>   Formatage long [p x lx] : {%p} {%x} {%lx}\n", 0x42424242, 0x42424242, 0x42424242);
-	printf(   "16) Formatage pourcent [30%%] : {%30%}\n");
-	ft_printf("=>   Formatage pourcent [30%%] : {%30%}\n");
-	printf(   "17) Formatage pourcent [-30pourcent] : {%-30%}\n");
-	ft_printf("=>   Formatage pourcent [-30pourcent] : {%-30%}\n");
-	ret[0] = printf(   "18) Test de la valeur de retour [-10+d s] : {%+-10d} {%s}\n", 12345, str);
-	ret[1] = ft_printf("=>   Test de la valeur de retour [-10+d s] : {%+-10d} {%s}\n", 12345, str);
-	printf(   "19) Verification de la valeur de retour [d] : {%d}\n", ret[0]);
-	ft_printf("=>   Verification de la valeur de retour [d] : {%d}\n", ret[1]);
-	printf(   "20) Test de pile [c c] : {%c} {%c}\n", 0x4142434444434241);
-	ft_printf("=>   Test de pile [c c] : {%c} {%c}\n", 0x4142434444434241);
-}
-
-int		ft_utoa(unsigned long long nb, char (*buff)[20])
-{
-	unsigned long long tmp;
-	int		ret;
-	int		len;
-
-	len = 1;
-	tmp = nb;
-	while (tmp >= 10)
+	// vfprintf
+	stream = fopen("./test_vfprintf.txt", "a");
+	if (stream == NULL)
 	{
-		tmp /= 10;
-		++len;
+		puts("fopen error! :(");
+		return ;
 	}
-	ret = len;
-	while (len-- > 0)
+	vfprintf(stream, "Test du vfprintf: %d / %d / %d\n", ap);
+	ft_vfprintf(stream, "Test du ft_vfprintf: %d / %d / %d\n", ap);
+	fclose(stream);
+
+	// vdprintf
+	fd = open("./test_vdprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
+	if (fd == -1)
 	{
-		(*buff)[len] = '0' + nb % 10;
-		nb /= 10;
+		puts("open error! :(");
+		return ;
 	}
-	(*buff)[ret] = '\0';
-	return ret;
+	vdprintf(fd, "Test du vdprintf: %d / %d / %d\n", ap);
+	ft_vdprintf(fd, "Test du ft_vdprintf: %d / %d / %d\n", ap);
+	close(fd);
+
+	// vsprintf
+	str1 = (char *)malloc(4096);
+	str2 = (char *)malloc(4096);
+	if (str1 == NULL || str2 == NULL)
+	{
+		puts("malloc error! :(");
+		return ;
+	}
+	vsprintf(str1, "Test du vsprintf: %d / %d / %d\n", ap);
+	ft_vsprintf(str2, "Test du ft_vsprintf: %d / %d / %d\n", ap);
+	puts(str1);
+	puts(str2);
+
+	// vsnprintf
+	vsnprintf(str1, 14, "Test du vsnprintf: %d / %d / %d\n", ap);
+	ft_vsnprintf(str2, 14, "Test du ft_vsnprintf: %d / %d / %d\n", ap);
+	puts(str1);
+	puts(str2);
+	free(str1);
+	free(str2);
+
+	va_end(ap);
 }
 
-long double ft_10pow(int n)
+void		test_printf_functions()
 {
-	long double nb;
+	int		fd;
+	FILE	*stream;
+	char	*str1;
+	char	*str2;
 
-	nb = 1.0L;
-	if (n == 0)
-		return (1.0L);
-	if (n > 0)
-		while (n-- > 0)
-			nb *= 10.0L;
-	else
-		while (n++ < 0)
-			nb /= 10.0L;
-	return (nb);
-}
+	// printf
+	printf("Test du printf %d\n", 42);
+	ft_printf("Test du printf %d\n", 42);
 
-void		add_mantissa(char (*str)[4096], long double nb, int precision, int len)
-{
-	unsigned long long tmp;
-	char	buff[20];
-	int		scale;
-	int		i;
-	int		j;
-
-	i = 0;
-	scale = 19;
-	while (i < precision) {
-		if (i + scale >= precision) {
-			scale = precision - i;
-			nb += 0.5L * ft_10pow(-scale);
-		}
-		tmp = (unsigned long long)(nb * ft_10pow(scale));
-		j = ft_utoa(tmp, &buff);
-		while (j++ < scale)
-			(*str)[len + i++] = '0';
-		j = 0;
-		while (buff[j])
-			(*str)[len + i++] = buff[j++];
-		j = 0;
-		while (j++ < scale) {
-			nb *= 10.0L;
-			nb -= (long double)(char)nb;
-		}
+	// fprintf
+	stream = fopen("./test_fprintf.txt", "a");
+	if (stream == NULL)
+	{
+		puts("fopen error! :(");
+		return ;
 	}
+	fprintf(stream, "Test du fprintf %d\n", 42);
+	ft_fprintf(stream, "Test du ft_fprintf %d\n", 42);
+	fclose(stream);
+
+	// dprintf
+	fd = open("./test_dprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
+	if (fd == -1)
+	{
+		puts("open error! :(");
+		return ;
+	}
+	dprintf(fd, "Test du dprintf %d\n", 42);
+	ft_dprintf(fd, "Test du ft_dprintf %d\n", 42);
+	close(fd);
+
+	// sprintf
+	str1 = (char *)malloc(4096);
+	str2 = (char *)malloc(4096);
+	if (str1 == NULL || str2 == NULL)
+	{
+		puts("malloc error! :(");
+		return ;
+	}
+	sprintf(str1, "Test du sprintf %d\n", 42);
+	ft_sprintf(str2, "Test du ft_sprintf %d\n", 42);
+	puts(str1);
+	puts(str2);
+
+	// snprintf
+	snprintf(str1, 14, "Test du snprintf %d\n", 42);
+	ft_snprintf(str2, 14, "Test du ft_snprintf %d\n", 42);
+	puts(str1);
+	puts(str2);
+	free(str1);
+	free(str2);
 }
 
 int			main(int ac, char **av)
 {
-	float				nb = 0.00000000499;
-	char				str1[4096], str2[4096];
-	int					cmp;
-	int					i, j, k;
-	int					precision = 19, length = 9;
-
-	sprintf(str1, "%.*f\n", length, nb);
-	sprintf(str2, "0.");
-	add_mantissa(&str2, nb, length, 2);
-	i = 2;
-	cmp = -1;
-	while (str1[i] && str2[i]) {
-		if (str1[i] != str2[i]) {
-			cmp = i - 2;
-			break ;
-		}
-		++i;
-	}
-	printf("%s%s\n%d\n%.*s\n", str1, str2, cmp, cmp + 2, str2);
-	// char	cmd[] = "-g";
-	// int		ret[2];
-	// int		i = 0;
-	//
-	// if (ac > 1)
-	// {
-	// 	while (av[1][i] && av[1][i] == cmd[i])
-	// 		++i;
-	// 	if (av[1][i] == cmd[i])
-	// 		test();
-	// }
-	// else
-	// {
-	// 	ret[0] = printf(   "%-020p\n", &i);
-	// 	ret[1] = ft_printf("%-020p\n", &i);
-	// 	printf("%d / %d\n", ret[0], ret[1]);
-	// }
+	ft_printf("%b\n", 0);
+	ft_printf("%b\n", 22708568336987221);
+	ft_printf("%b\n", 0xffffffffffffffff);
+	// test_printf_functions();
+	// test_vprintf_functions(0, 42, 101, 2019);
 	return(0);
 }

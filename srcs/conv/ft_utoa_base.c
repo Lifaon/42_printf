@@ -35,7 +35,8 @@ static void	init_str(char (*str)[16], int maj)
 		(*str)[i] = (maj ? 'A' : 'a') - 10 + i;
 }
 
-void		ft_utoa_base(unsigned long long nb, int base, int maj, char (*buff)[23])
+void		ft_utoa_base(unsigned long long nb, int base, int maj,
+															char (*buff)[23])
 {
 	char	str[16];
 	int		len;

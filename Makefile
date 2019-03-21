@@ -28,18 +28,24 @@ INC_DIR = includes
 
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = parse
+OBJS_SUB_DIRS = conv parse
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 SRCS_DIR = srcs
 SRCS =	ft_printf.c \
+		ft_vprintf.c \
 		buffer.c \
-		param.c \
+		init_param.c \
+		parse_fmt.c \
 		\
-		parse/ft_atoi.c \
-		parse/ft_itoa.c \
-		parse/ft_utoa_base.c \
+		conv/ft_atoi.c \
+		conv/ft_dtoa.c \
+		conv/ft_itoa.c \
+		conv/ft_utoa_base.c \
+		\
+		parse/b.c \
 		parse/c.c \
+		parse/f.c \
 		parse/i.c \
 		parse/o.c \
 		parse/p.c \
@@ -89,4 +95,4 @@ change_cflag:
 ### TO DELETE BEFORE CORRECTION ###
 test:
 	@echo "$(GRE)gcc $(CFLAGS) main.c -L. -lftprintf$(EOC)"
-	@gcc $(CFLAGS) -w main.c -L. -lftprintf -I includes
+	@gcc $(CFLAGS) main.c -L. -lftprintf -I includes

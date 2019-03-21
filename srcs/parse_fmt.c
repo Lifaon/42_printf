@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   param.c                                            :+:      :+:    :+:   */
+/*   parse_fmt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "utils.h"
 
 static void	print_param(t_param *param)
 {
@@ -79,7 +79,7 @@ static void	find_type(t_param *param, int *i)
 {
 	int j;
 
-	if (param->fmt[*i] == 'h' || param->fmt[*i] == 'l')
+	if (param->fmt[*i] == 'h' || param->fmt[*i] == 'l' || param->fmt[*i] == 'L')
 	{
 		param->size = param->fmt[(*i)++] == 'h' ? SHORT : LONG;
 		if ((param->fmt[*i] == 'h' && param->size == SHORT)
@@ -104,19 +104,31 @@ static void	find_type(t_param *param, int *i)
 	print_param(param);
 }
 
-void		parse_param(t_param *param, int *i)
+void		parse_fmt(t_param *param)
 {
-	param->flag.sharp = FALSE;
-	param->flag.zero = FALSE;
-	param->flag.minus = FALSE;
-	param->flag.plus = FALSE;
-	param->flag.space = FALSE;
-	param->width = 0;
-	param->preci = -1;
-	param->size = 0;
-	++(*i);
-	while (find_flag(param, param->fmt[*i]))
-		++(*i);
-	find_width_preci(param, i);
-	find_type(param, i);
+	int	i;
+
+	i = 0;
+	while(param->fmt[i])
+	{
+		if (param->fmt[i] != '%')
+			add_char_to_buff(param, param->fmt[i++]);
+		else
+		{
+			param->flag.sharp = FALSE;
+			param->flag.zero = FALSE;
+			param->flag.minus = FALSE;
+			param->flag.plus = FALSE;
+			param->flag.space = FALSE;
+			param->width = 0;
+			param->preci = -1;
+			param->size = 0;
+			++i;
+			while (find_flag(param, param->fmt[i]))
+				++i;
+			find_width_preci(param, &i);
+			find_type(param, &i);
+		}
+	}
+	print_buff(param);
 }

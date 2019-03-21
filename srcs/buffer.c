@@ -10,19 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
+#include <stdio.h>
+#include "structs.h"
 
 void	print_buff(t_param *param)
 {
+	if (param->str != NULL)
+	{
+		param->str[param->buff_read] = '\0';
+		return ;
+	}
+	if (!param->buff_len)
+		return ;
 	param->buff[param->buff_len] = '\0';
-	write(1, param->buff, param->buff_len + 1);
+	if (param->stream != NULL)
+		fputs(param->buff, param->stream);
+	else
+		write(param->fd, param->buff, param->buff_len + 1);
 	param->buff_read += param->buff_len;
 	param->buff_len = 0;
 }
 
 void	add_char_to_buff(t_param *param, char c)
 {
-	param->buff[param->buff_len++] = c;
-	if (param->buff_len == BUFF_SIZE)
-		print_buff(param);
+	if (param->str != NULL)
+	{
+		if (!param->is_maxed || param->buff_read + 1 < param->buff_max)
+			param->str[param->buff_read++] = c;
+	}
+	else
+	{
+		param->buff[param->buff_len++] = c;
+		if (param->buff_len == BUFF_SIZE)
+			print_buff(param);
+	}
 }

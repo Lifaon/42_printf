@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "conv.h"
 
 static void print_width(int len, char c, t_param *param)
 {
