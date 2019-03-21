@@ -6,14 +6,14 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 18:00:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:44:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdio.h>
+# include <stdio.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_fprintf(FILE *stream, const char *fmt, ...);

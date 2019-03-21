@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 19:38:06 by mlantonn         ###   ########.fr       */
+/*   Created: 2019/03/21 21:29:01 by mlantonn          #+#    #+#             */
+/*   Updated: 2019/03/21 21:36:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,18 @@ static void			add_mantissa(t_param *param, long double nb)
 
 	i = 0;
 	scale = 19;
-	while (i < param->preci) {
-		if (i + scale >= param->preci) {
+	while (i < param->preci)
+	{
+		if (i + scale >= param->preci)
+		{
 			scale = param->preci - i;
 			nb += 0.5L * ft_10pow(-scale);
 		}
 		i += scale;
 		ft_utoa(param, (t_ull)(nb * ft_10pow(scale)), scale);
 		j = 0;
-		while (j++ < scale) {
+		while (j++ < scale)
+		{
 			nb *= 10.0L;
 			nb -= (long double)(char)nb;
 		}

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 23:43:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:43:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_flag
 	int				space;
 }					t_flag;
 
-struct				s_param;
+struct s_param;
 
 typedef struct		s_func
 {

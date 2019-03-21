@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:43:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 22:34:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:41:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	get_sized_param(long long *nb, t_param *param)
 		*nb = (long long)va_arg(param->ap, int);
 }
 
-static void print_width(int len, char c, long long nb, t_param *param)
+static void	print_width(int len, char c, long long nb, t_param *param)
 {
 	int tmp;
 
@@ -45,7 +45,7 @@ static void print_width(int len, char c, long long nb, t_param *param)
 	}
 }
 
-static void print_preci(int len, t_param *param)
+static void	print_preci(int len, t_param *param)
 {
 	if (param->preci >= 0)
 		while (len < param->preci)
@@ -66,7 +66,7 @@ static void	add_pos(t_param *param, long long nb)
 	}
 }
 
-void	i(t_param *param)
+void		i(t_param *param)
 {
 	long long	nb;
 	char		buff[21];

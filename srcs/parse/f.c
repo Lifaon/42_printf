@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 19:38:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:37:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	get_sign(t_param *param, long double *nb)
 	}
 	else if (param->flag.plus)
 		sign = '+';
-	else if(param->flag.space)
+	else if (param->flag.space)
 		sign = ' ';
 	return (sign);
 }

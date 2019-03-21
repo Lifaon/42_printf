@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/08 00:53:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:23:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include "ft_printf.h"
 
 void		test_vprintf_functions(int mark, ...)
@@ -29,28 +30,40 @@ void		test_vprintf_functions(int mark, ...)
 
 	// vprintf
 	vprintf("Test du vprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	ft_vprintf("Test du vprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 
 	// vfprintf
 	stream = fopen("./test_vfprintf.txt", "a");
 	if (stream == NULL)
 	{
-		puts("fopen error! :(");
+		perror("fopen error! :(");
 		return ;
 	}
 	vfprintf(stream, "Test du vfprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	ft_vfprintf(stream, "Test du ft_vfprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	fclose(stream);
 
 	// vdprintf
 	fd = open("./test_vdprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
 	if (fd == -1)
 	{
-		puts("open error! :(");
+		perror("open error! :(");
 		return ;
 	}
 	vdprintf(fd, "Test du vdprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	ft_vdprintf(fd, "Test du ft_vdprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	close(fd);
 
 	// vsprintf
@@ -58,16 +71,22 @@ void		test_vprintf_functions(int mark, ...)
 	str2 = (char *)malloc(4096);
 	if (str1 == NULL || str2 == NULL)
 	{
-		puts("malloc error! :(");
+		perror("malloc error! :(");
 		return ;
 	}
 	vsprintf(str1, "Test du vsprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	ft_vsprintf(str2, "Test du ft_vsprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	puts(str1);
 	puts(str2);
 
 	// vsnprintf
 	vsnprintf(str1, 14, "Test du vsnprintf: %d / %d / %d\n", ap);
+	va_end(ap);
+	va_start(ap, mark);
 	ft_vsnprintf(str2, 14, "Test du ft_vsnprintf: %d / %d / %d\n", ap);
 	puts(str1);
 	puts(str2);
@@ -92,7 +111,7 @@ void		test_printf_functions()
 	stream = fopen("./test_fprintf.txt", "a");
 	if (stream == NULL)
 	{
-		puts("fopen error! :(");
+		perror("fopen error! :(");
 		return ;
 	}
 	fprintf(stream, "Test du fprintf %d\n", 42);
@@ -103,7 +122,7 @@ void		test_printf_functions()
 	fd = open("./test_dprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
 	if (fd == -1)
 	{
-		puts("open error! :(");
+		perror("open error! :(");
 		return ;
 	}
 	dprintf(fd, "Test du dprintf %d\n", 42);
@@ -115,7 +134,7 @@ void		test_printf_functions()
 	str2 = (char *)malloc(4096);
 	if (str1 == NULL || str2 == NULL)
 	{
-		puts("malloc error! :(");
+		perror("malloc error! :(");
 		return ;
 	}
 	sprintf(str1, "Test du sprintf %d\n", 42);
@@ -137,7 +156,7 @@ int			main(int ac, char **av)
 	ft_printf("%b\n", 0);
 	ft_printf("%b\n", 22708568336987221);
 	ft_printf("%b\n", 0xffffffffffffffff);
-	// test_printf_functions();
-	// test_vprintf_functions(0, 42, 101, 2019);
+	test_printf_functions();
+	test_vprintf_functions(0, 42, 101, 2019);
 	return(0);
 }

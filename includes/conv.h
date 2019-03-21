@@ -6,12 +6,12 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:44:10 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/08 00:06:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:43:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef CONV_H
+# define CONV_H
 
 # include "structs.h"
 

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 23:41:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:41:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	find_flag(t_param *param, char c)
 	return (1);
 }
 
-static int	find_width_preci(t_param *param, int *i)
+static void	find_width_preci(t_param *param, int *i)
 {
 	if (param->fmt[*i] >= '1' && param->fmt[*i] <= '9')
 		param->width = ft_atoi(param->fmt + *i);
@@ -109,7 +109,7 @@ void		parse_fmt(t_param *param)
 	int	i;
 
 	i = 0;
-	while(param->fmt[i])
+	while (param->fmt[i])
 	{
 		if (param->fmt[i] != '%')
 			add_char_to_buff(param, param->fmt[i++]);

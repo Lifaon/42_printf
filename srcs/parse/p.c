@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 00:04:21 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/08 00:15:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:38:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conv.h"
 
-static void print_width(int len, char c, t_param *param)
+static void	print_width(int len, char c, t_param *param)
 {
 	int tmp;
 
@@ -31,7 +31,7 @@ static void print_width(int len, char c, t_param *param)
 	}
 }
 
-static void print_preci(int len, t_param *param)
+static void	print_preci(int len, t_param *param)
 {
 	if (param->preci >= 0)
 		while (len < param->preci)
@@ -51,7 +51,7 @@ static void	add_pos(t_param *param)
 	add_char_to_buff(param, 'x');
 }
 
-void	p(t_param *param)
+void		p(t_param *param)
 {
 	t_ull	nb;
 	char	buff[23];

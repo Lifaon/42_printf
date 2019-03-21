@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/07 23:38:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/21 21:39:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conv.h"
 
-static void	get_sized_param(long long *nb, t_param *param)
+static void	get_sized_param(t_ull *nb, t_param *param)
 {
 	if (param->size == SHORTCHAR)
 		*nb = (t_ull)(unsigned char)va_arg(param->ap, unsigned int);
@@ -26,7 +26,7 @@ static void	get_sized_param(long long *nb, t_param *param)
 		*nb = (t_ull)va_arg(param->ap, unsigned int);
 }
 
-static void print_width(int len, char c, int base, t_param *param)
+static void	print_width(int len, char c, int base, t_param *param)
 {
 	int tmp;
 
@@ -78,7 +78,7 @@ static void	add_sharp(t_param *param, int base, char c)
 	}
 }
 
-void	u(t_param *param)
+void		u(t_param *param)
 {
 	t_ull	nb;
 	char	buff[23];
