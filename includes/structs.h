@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:43:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/25 11:47:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define STRUCTS_H
 
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include "defines.h"
 
@@ -41,7 +40,6 @@ typedef struct		s_param
 {
 	char			*fmt;
 	char			*str;
-	FILE			*stream;
 	int				fd;
 	char			buff[BUFF_SIZE + 1];
 	long long		buff_len;

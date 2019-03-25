@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:41:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/25 15:36:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,46 +58,46 @@ static int	find_flag(t_param *param, char c)
 	return (1);
 }
 
-static void	find_width_preci(t_param *param, int *i)
+static void	find_width_preci(t_param *param)
 {
-	if (param->fmt[*i] >= '1' && param->fmt[*i] <= '9')
-		param->width = ft_atoi(param->fmt + *i);
-	while (param->fmt[*i] >= '0' && param->fmt[*i] <= '9')
-		++(*i);
-	if (param->fmt[*i] == '.')
+	if (*param->fmt >= '1' && *param->fmt <= '9')
+		param->width = ft_atoi(param->fmt);
+	while (*param->fmt >= '0' && *param->fmt <= '9')
+		param->fmt++;
+	if (*param->fmt == '.')
 	{
-		++(*i);
+		param->fmt++;
 		param->preci = 0;
-		if (param->fmt[*i] >= '0' && param->fmt[*i] <= '9')
-			param->preci = ft_atoi(param->fmt + *i);
-		while (param->fmt[*i] >= '0' && param->fmt[*i] <= '9')
-			++(*i);
+		if (*param->fmt >= '0' && *param->fmt <= '9')
+			param->preci = ft_atoi(param->fmt);
+		while (*param->fmt >= '0' && *param->fmt <= '9')
+			param->fmt++;
 	}
 }
 
-static void	find_type(t_param *param, int *i)
+static void	find_type(t_param *param)
 {
 	int j;
 
-	if (param->fmt[*i] == 'h' || param->fmt[*i] == 'l' || param->fmt[*i] == 'L')
+	if (*param->fmt == 'h' || *param->fmt == 'l' || *param->fmt == 'L')
 	{
-		param->size = param->fmt[(*i)++] == 'h' ? SHORT : LONG;
-		if ((param->fmt[*i] == 'h' && param->size == SHORT)
-		|| (param->fmt[*i] == 'l' && param->size == LONG))
-			param->size = param->fmt[(*i)++] == 'h' ? SHORTCHAR : LONGLONG;
+		param->size = *(param->fmt++) == 'h' ? SHORT : LONG;
+		if ((*param->fmt == 'h' && param->size == SHORT)
+		|| (*param->fmt == 'l' && param->size == LONG))
+			param->size = *(param->fmt++) == 'h' ? SHORTCHAR : LONGLONG;
 	}
 	j = -1;
 	while (++j < TYPE_NB)
 	{
-		if (param->fmt[*i] == param->func[j].type)
+		if (*param->fmt == param->func[j].type)
 		{
-			param->type = param->fmt[(*i)++];
+			param->type = *(param->fmt++);
 			param->func[j].f(param);
 			return ;
 		}
-		else if (param->fmt[*i] == '%')
+		else if (*param->fmt == '%')
 		{
-			add_char_to_buff(param, param->fmt[(*i)++]);
+			add_char_to_buff(param, *(param->fmt++));
 			return ;
 		}
 	}
@@ -106,13 +106,10 @@ static void	find_type(t_param *param, int *i)
 
 void		parse_fmt(t_param *param)
 {
-	int	i;
-
-	i = 0;
-	while (param->fmt[i])
+	while (*param->fmt)
 	{
-		if (param->fmt[i] != '%')
-			add_char_to_buff(param, param->fmt[i++]);
+		if (*param->fmt != '%')
+			add_char_to_buff(param, *(param->fmt++));
 		else
 		{
 			param->flag.sharp = FALSE;
@@ -123,11 +120,11 @@ void		parse_fmt(t_param *param)
 			param->width = 0;
 			param->preci = -1;
 			param->size = 0;
-			++i;
-			while (find_flag(param, param->fmt[i]))
-				++i;
-			find_width_preci(param, &i);
-			find_type(param, &i);
+			param->fmt++;
+			while (find_flag(param, *param->fmt))
+				param->fmt++;
+			find_width_preci(param);
+			find_type(param);
 		}
 	}
 	print_buff(param);

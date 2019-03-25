@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:35:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/25 11:47:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void		init_param(t_param *param, const char *fmt)
 {
 	param->fmt = (char *)fmt;
 	param->str = NULL;
-	param->stream = NULL;
 	param->fd = 1;
 	param->buff_len = 0;
 	param->buff_read = 0;

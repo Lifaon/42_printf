@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:23:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:54:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,6 @@ void		test_vprintf_functions(int mark, ...)
 	ft_vprintf("Test du vprintf: %d / %d / %d\n", ap);
 	va_end(ap);
 	va_start(ap, mark);
-
-	// vfprintf
-	stream = fopen("./test_vfprintf.txt", "a");
-	if (stream == NULL)
-	{
-		perror("fopen error! :(");
-		return ;
-	}
-	vfprintf(stream, "Test du vfprintf: %d / %d / %d\n", ap);
-	va_end(ap);
-	va_start(ap, mark);
-	ft_vfprintf(stream, "Test du ft_vfprintf: %d / %d / %d\n", ap);
-	va_end(ap);
-	va_start(ap, mark);
-	fclose(stream);
 
 	// vdprintf
 	fd = open("./test_vdprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
@@ -105,18 +90,7 @@ void		test_printf_functions()
 
 	// printf
 	printf("Test du printf %d\n", 42);
-	ft_printf("Test du printf %d\n", 42);
-
-	// fprintf
-	stream = fopen("./test_fprintf.txt", "a");
-	if (stream == NULL)
-	{
-		perror("fopen error! :(");
-		return ;
-	}
-	fprintf(stream, "Test du fprintf %d\n", 42);
-	ft_fprintf(stream, "Test du ft_fprintf %d\n", 42);
-	fclose(stream);
+	ft_printf("Test du ft_printf %d\n", 42);
 
 	// dprintf
 	fd = open("./test_dprintf.txt", O_CREAT | O_WRONLY | O_APPEND);
@@ -153,10 +127,11 @@ void		test_printf_functions()
 
 int			main(int ac, char **av)
 {
-	ft_printf("%b\n", 0);
-	ft_printf("%b\n", 22708568336987221);
-	ft_printf("%b\n", 0xffffffffffffffff);
-	test_printf_functions();
-	test_vprintf_functions(0, 42, 101, 2019);
+	ft_printf("%f\n", 0.0 / 0.0);
+	// ft_printf("%b\n", 0);
+	// ft_printf("%b\n", 22708568336987221);
+	// ft_printf("%b\n", 0xffffffffffffffff);
+	// test_printf_functions();
+	// test_vprintf_functions(0, 42, 101, 2019);
 	return(0);
 }

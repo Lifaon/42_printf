@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:37:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:44:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,33 @@ static char	get_sign(t_param *param, long double *nb)
 	return (sign);
 }
 
+static void	get_size_sign(t_param *param, long double *nb, int *size, int *sign)
+{
+	*size = get_size(param, *nb);
+	*sign = get_sign(param, nb);
+}
+
+static int	inf_nan(t_param *param, long double nb)
+{
+	if (nb == (1.0L / 0.0L) || nb == (-1.0L / 0.0L))
+	{
+		if (nb == (-1.0L / 0.0L))
+			add_char_to_buff(param, '-');
+		add_char_to_buff(param, 'i');
+		add_char_to_buff(param, 'n');
+		add_char_to_buff(param, 'f');
+		return (1);
+	}
+	else if (nb != nb)
+	{
+		add_char_to_buff(param, 'n');
+		add_char_to_buff(param, 'a');
+		add_char_to_buff(param, 'n');
+		return (1);
+	}
+	return (0);
+}
+
 void		f(t_param *param)
 {
 	long double	nb;
@@ -61,8 +88,9 @@ void		f(t_param *param)
 		nb = va_arg(param->ap, long double);
 	else
 		nb = (long double)va_arg(param->ap, double);
-	size = get_size(param, nb);
-	sign = get_sign(param, &nb);
+	if (inf_nan(param, nb))
+		return ;
+	get_size_sign(param, &nb, &size, &sign);
 	if (sign && (param->width <= size || param->flag.zero || param->flag.minus))
 	{
 		add_char_to_buff(param, sign);
