@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 16:54:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 11:59:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,10 @@ void		test_printf_functions()
 
 int			main(int ac, char **av)
 {
-	ft_printf("%f\n", 0.0 / 0.0);
-	// ft_printf("%b\n", 0);
-	// ft_printf("%b\n", 22708568336987221);
-	// ft_printf("%b\n", 0xffffffffffffffff);
-	// test_printf_functions();
-	// test_vprintf_functions(0, 42, 101, 2019);
+	ft_printf("%b\n", 0);
+	ft_printf("%b\n", 22708568336987221);
+	ft_printf("%b\n", 0xffffffffffffffff);
+	test_printf_functions();
+	test_vprintf_functions(0, 42, 101, 2019);
 	return(0);
 }

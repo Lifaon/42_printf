@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 16:44:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 11:58:05 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static int	get_size(t_param *param, long double nb)
 	size += param->preci;
 	if (param->preci || param->flag.sharp)
 		++size;
-	if (nb < 0.0L || param->flag.plus || param->flag.space)
-		++size;
 	if (nb < 0.0L)
 		nb = -nb;
 	while (nb >= 10.0L)
@@ -36,9 +34,18 @@ static int	get_size(t_param *param, long double nb)
 
 static char	get_sign(t_param *param, long double *nb)
 {
-	char sign;
+	int		*p;
+	float	tmp;
+	char	sign;
 
 	sign = 0;
+	if (*nb == 0.0L)
+	{
+		tmp = (float)(*nb);
+		p = (int *)(&tmp);
+		if (*p & (1 << 31))
+			return ('-');
+	}
 	if (*nb < 0.0L)
 	{
 		sign = '-';
@@ -55,6 +62,8 @@ static void	get_size_sign(t_param *param, long double *nb, int *size, int *sign)
 {
 	*size = get_size(param, *nb);
 	*sign = get_sign(param, nb);
+	if (*sign != 0)
+		++(*size);
 }
 
 static int	inf_nan(t_param *param, long double nb)
