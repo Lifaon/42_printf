@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 11:58:05 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 16:46:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,31 @@ static void	get_size_sign(t_param *param, long double *nb, int *size, int *sign)
 
 static int	inf_nan(t_param *param, long double nb)
 {
-	if (nb == (1.0L / 0.0L) || nb == (-1.0L / 0.0L))
+	int i;
+	char buff[5];
+
+	i = 0;
+	if (nb == (1.0L / 0.0L) || nb == (-1.0L / 0.0L) || nb != nb)
 	{
 		if (nb == (-1.0L / 0.0L))
-			add_char_to_buff(param, '-');
-		add_char_to_buff(param, 'i');
-		add_char_to_buff(param, 'n');
-		add_char_to_buff(param, 'f');
-		return (1);
+			buff[i++] = '-';
+		buff[i++] = nb != nb ? 'n' : 'i';
+		buff[i++] = nb != nb ? 'a' : 'n';
+		buff[i++] = nb != nb ? 'n' : 'f';
 	}
-	else if (nb != nb)
-	{
-		add_char_to_buff(param, 'n');
-		add_char_to_buff(param, 'a');
-		add_char_to_buff(param, 'n');
-		return (1);
-	}
-	return (0);
+	else
+		return (0);
+	buff[i] = '\0';
+	if (i < param->width && !param->flag.minus)
+		while (i++ < param->width)
+			add_char_to_buff(param, ' ');
+	i = 0;
+	while (buff[i])
+		add_char_to_buff(param, buff[i++]);
+	if (i < param->width && param->flag.minus)
+		while (i++ < param->width)
+			add_char_to_buff(param, ' ');
+	return (1);
 }
 
 void		f(t_param *param)
