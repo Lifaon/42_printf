@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 16:46:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:35:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	get_size_sign(t_param *param, long double *nb, int *size, int *sign)
 
 static int	inf_nan(t_param *param, long double nb)
 {
-	int i;
-	char buff[5];
+	int		i;
+	char	buff[5];
 
 	i = 0;
 	if (nb == (1.0L / 0.0L) || nb == (-1.0L / 0.0L) || nb != nb)

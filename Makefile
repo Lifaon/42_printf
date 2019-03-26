@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/03/08 00:06:36 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/03/26 20:36:47 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ EOC = \033[39m
 NAME = libftprintf.a
 DIR_NAME = ft_printf
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 INC = -I $(INC_DIR)
 INC_DIR = includes

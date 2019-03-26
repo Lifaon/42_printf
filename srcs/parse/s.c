@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:42:37 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 15:28:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:36:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	print_null(t_param *param, int len)
 	add_char_to_buff(param, ')');
 }
 
-void	s(t_param *param)
+void		s(t_param *param)
 {
 	char	*str;
 	int		len;

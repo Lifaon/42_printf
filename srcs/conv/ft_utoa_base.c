@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 01:01:10 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/21 21:25:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:39:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ static int	ft_nbrlen(unsigned long long nb, int base)
 	int len;
 
 	len = 1;
-	while (nb >= base)
+	while (nb >= (unsigned long long)base)
 	{
 		nb /= base;
 		++len;

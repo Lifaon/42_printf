@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 11:59:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:39:44 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <limits.h>
+#include <float.h>
 #include "ft_printf.h"
 
 void		test_vprintf_functions(int mark, ...)
 {
 	va_list ap;
 	int		fd;
-	FILE	*stream;
 	char	*str1;
 	char	*str2;
 
@@ -84,7 +85,6 @@ void		test_vprintf_functions(int mark, ...)
 void		test_printf_functions()
 {
 	int		fd;
-	FILE	*stream;
 	char	*str1;
 	char	*str2;
 
@@ -125,8 +125,9 @@ void		test_printf_functions()
 	free(str2);
 }
 
-int			main(int ac, char **av)
+int			main(void)
 {
+	// printf("\n%Lf\n", LDBL_MAX);
 	ft_printf("%b\n", 0);
 	ft_printf("%b\n", 22708568336987221);
 	ft_printf("%b\n", 0xffffffffffffffff);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 11:16:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:37:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	add_char_to_buff(t_param *param, char c)
 {
 	if (param->str != NULL)
 	{
-		if (!param->is_maxed || param->buff_read + 1 < param->buff_max)
+		if (!param->is_maxed || param->buff_read + 1 < (t_ull)param->buff_max)
 			param->str[param->buff_read++] = c;
 	}
 	else

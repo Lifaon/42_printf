@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 00:04:21 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 15:13:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:36:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void		x(t_param *param)
 		++len;
 	if (len < param->width && !param->flag.minus
 		&& (!param->flag.zero || (param->preci >= 0)))
-		print_width(len, ' ', nb,  param);
+		print_width(len, ' ', nb, param);
 	add_sharp(param, nb);
 	if (len < param->width && !param->flag.minus && param->flag.zero)
-		print_width(len, '0', nb,  param);
+		print_width(len, '0', nb, param);
 	print_preci(len, param);
 	i = 0;
 	if (param->preci || nb)
 		while (buff[i])
 			add_char_to_buff(param, buff[i++]);
 	if (len < param->width && param->flag.minus)
-		print_width(len, ' ', nb,  param);
+		print_width(len, ' ', nb, param);
 }
