@@ -6,14 +6,16 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:42:37 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 18:53:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:28:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conv.h"
 
-static void	print_null(t_param *param)
+static void	print_null(t_param *param, int len)
 {
+	if (!len)
+		return ;
 	add_char_to_buff(param, '(');
 	add_char_to_buff(param, 'n');
 	add_char_to_buff(param, 'u');
@@ -32,7 +34,7 @@ void	s(t_param *param)
 	i = 0;
 	str = va_arg(param->ap, char *);
 	if (str == NULL)
-		len = 6;
+		len = param->preci ? 6 : 0;
 	else
 		while (str[len])
 			++len;
@@ -42,7 +44,7 @@ void	s(t_param *param)
 		while (len++ < param->width)
 			add_char_to_buff(param, ' ');
 	if (str == NULL)
-		print_null(param);
+		print_null(param, len);
 	else
 		while (str[i] && (param->preci == -1 || i < param->preci))
 			add_char_to_buff(param, str[i++]);

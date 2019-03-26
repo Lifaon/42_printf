@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:43:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 19:33:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:01:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	print_width(int len, char c, long long nb, t_param *param)
 {
 	int tmp;
 
-	tmp = 0;
+	tmp = param->preci || nb ? 0 : -1;
 	if (nb < 0)
 	{
 		if (param->preci >= 0)
-			tmp = 1;
+			tmp += 1;
 	}
 	else if (param->flag.plus || param->flag.space)
-		tmp = 1;
+		tmp += 1;
 	if (param->preci >= 0 && len < param->preci)
 		tmp += param->preci - len;
 	if (len + tmp < param->width)
@@ -95,8 +95,9 @@ void		i(t_param *param)
 		print_width(len, '0', nb, param);
 	print_preci(len - (nb < 0), param);
 	i = (nb < 0);
-	while (buff[i])
-		add_char_to_buff(param, buff[i++]);
+	if (param->preci || nb)
+		while (buff[i])
+			add_char_to_buff(param, buff[i++]);
 	if (len < param->width && param->flag.minus)
 		print_width(len, ' ', nb, param);
 }

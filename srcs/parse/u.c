@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:43:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 10:20:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:04:44 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static void	get_sized_param(t_ull *nb, t_param *param)
 		*nb = (t_ull)va_arg(param->ap, unsigned int);
 }
 
-static void	print_width_preci(int len, int prec_flag, t_param *param)
+static void	print_width_preci(int len, int prec_flag, t_ull nb, t_param *param)
 {
 	int		preci;
 	int		tmp;
 
-	preci = 0;
+	preci = param->preci || nb ? 0 : -1;
 	if (param->preci >= 0 && len < param->preci)
 		preci = param->preci - len;
 	tmp = preci;
@@ -67,9 +67,10 @@ void		u(t_param *param)
 	len = 0;
 	while (buff[len])
 		++len;
-	print_width_preci(len, 1, param);
+	print_width_preci(len, 1, nb, param);
 	i = 0;
-	while (buff[i])
-		add_char_to_buff(param, buff[i++]);
-	print_width_preci(len, 0, param);
+	if (param->preci || nb)
+		while (buff[i])
+			add_char_to_buff(param, buff[i++]);
+	print_width_preci(len, 0, nb, param);
 }

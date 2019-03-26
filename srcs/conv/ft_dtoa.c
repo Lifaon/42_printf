@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 21:29:01 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 10:29:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:07:26 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void			add_integer(t_param *param, long double *nb)
 void				ft_dtoa(t_param *param, long double nb)
 {
 	if (param->preci == 0)
-		nb += 0.5;
+		nb += 0.4999L;
 	add_integer(param, &nb);
 	if (param->preci || param->flag.sharp)
 		add_char_to_buff(param, '.');
