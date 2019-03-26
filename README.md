@@ -24,13 +24,11 @@ $ gcc -L path/to/lib -lft_printf
 You will be able to use `ft_printf` and its 9 variants:<br />
 ```C
 int	ft_printf(const char *format, ...);
-int	ft_fprintf(FILE *stream, const char *fmt, ...);
 int	ft_dprintf(int fd, const char *fmt, ...);
 int	ft_sprintf(char *str, const char *fmt, ...);
 int	ft_snprintf(char *str, size_t size, const char *fmt, ...);
 
 int	ft_vprintf(const char *fmt, va_list ap);
-int	ft_vfprintf(FILE *stream, const char *fmt, va_list ap);
 int	ft_vdprintf(int fd, const char *fmt, va_list ap);
 int	ft_vsprintf(char *str, const char *fmt, va_list ap);
 int	ft_vsnprintf(char *str, size_t size, const char *fmt, va_list ap);
