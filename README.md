@@ -21,7 +21,7 @@ Include the header in your files and compile with library flags.<br />
 ```
 $ gcc -L path/to/lib -lft_printf
 ```
-You will be able to use `ft_printf` and its 9 variants:<br />
+You will be able to use `ft_printf` and 7 of its variants (fprintf & vfprintf are missing due to function restrictions):<br />
 ```C
 int	ft_printf(const char *format, ...);
 int	ft_dprintf(int fd, const char *fmt, ...);
