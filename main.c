@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 20:39:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/27 11:46:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,44 @@ void		test_printf_functions()
 
 int			main(void)
 {
-	// printf("\n%Lf\n", LDBL_MAX);
-	ft_printf("%b\n", 0);
-	ft_printf("%b\n", 22708568336987221);
-	ft_printf("%b\n", 0xffffffffffffffff);
-	test_printf_functions();
-	test_vprintf_functions(0, 42, 101, 2019);
+	int nb = 0;
+	char	fmt[] = "[%1.0d]\n\
+[%01.0d]\n\
+[%1.0hd]\n\
+[%01.0hd]\n\
+[%1.0hhd]\n\
+[%01.0hhd]\n\
+[%1.0ld]\n\
+[%01.0ld]\n\
+[%1.0lld]\n\
+[%01.0lld]\n\
+[%1.0x]\n\
+[%01.0x]\n\
+[%1.0hx]\n\
+[%01.0hx]\n\
+[%1.0hhx]\n\
+[%01.0hhx]\n\
+[%1.0lx]\n\
+[%01.0lx]\n\
+[%1.0llx]\n\
+[%01.0llx]\n\
+[%1.0X]\n\
+[%01.0X]\n\
+[%1.0hX]\n\
+[%01.0hX]\n\
+[%1.0hhX]\n\
+[%01.0hhX]\n\
+[%1.0lX]\n\
+[%01.0lX]\n\
+[%1.0llX]\n\
+[%01.0llX]\n\n";
+
+	// printf(fmt, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb);
+	ft_printf(fmt, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb);
+	// ft_printf("%b\n", 0);
+	// ft_printf("%b\n", 22708568336987221);
+	// ft_printf("%b\n", 0xffffffffffffffff);
+	// test_printf_functions();
+	// test_vprintf_functions(0, 42, 101, 2019);
 	return(0);
 }

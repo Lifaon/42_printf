@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:43:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 15:01:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/27 11:46:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_width(int len, char c, long long nb, t_param *param)
 	tmp = param->preci || nb ? 0 : -1;
 	if (nb < 0)
 	{
-		if (param->preci >= 0)
+		if (param->preci >= len)
 			tmp += 1;
 	}
 	else if (param->flag.plus || param->flag.space)
@@ -87,17 +87,16 @@ void		i(t_param *param)
 	len = 0;
 	while (buff[len])
 		++len;
-	if (len < param->width && !param->flag.minus
-		&& (!param->flag.zero || (param->preci >= 0)))
+	if (!param->flag.minus && (!param->flag.zero || (param->preci >= 0)))
 		print_width(len, ' ', nb, param);
 	add_pos(param, nb);
-	if (len < param->width && !param->flag.minus && param->flag.zero)
+	if (!param->flag.minus && param->flag.zero)
 		print_width(len, '0', nb, param);
 	print_preci(len - (nb < 0), param);
 	i = (nb < 0);
 	if (param->preci || nb)
 		while (buff[i])
 			add_char_to_buff(param, buff[i++]);
-	if (len < param->width && param->flag.minus)
+	if (param->flag.minus)
 		print_width(len, ' ', nb, param);
 }

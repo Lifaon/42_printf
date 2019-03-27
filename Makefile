@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/03/26 20:36:47 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/03/27 09:55:53 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,4 +95,4 @@ change_cflag:
 ### TO DELETE BEFORE CORRECTION ###
 test:
 	@echo "$(GRE)gcc $(CFLAGS) main.c -L. -lftprintf$(EOC)"
-	@gcc $(CFLAGS) main.c -L. -lftprintf -I includes
+	@gcc -w main.c -L. -lftprintf -I includes
