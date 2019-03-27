@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 00:04:21 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/27 14:15:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/27 20:16:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_width(int len, char c, t_ull nb, t_param *param)
 {
 	int tmp;
 
-	tmp = nb ? 2 : 0;
+	tmp = 2;
 	if (!param->preci && !nb)
 		tmp -= 1;
 	if (param->preci >= 0 && len < param->preci)
@@ -43,13 +43,10 @@ static void	print_preci(int len, t_param *param)
 		}
 }
 
-static void	add_pos(t_param *param, t_ull nb)
+static void	add_pos(t_param *param)
 {
-	if (nb)
-	{
-		add_char_to_buff(param, '0');
-		add_char_to_buff(param, 'x');
-	}
+	add_char_to_buff(param, '0');
+	add_char_to_buff(param, 'x');
 }
 
 void		p(t_param *param)
@@ -69,7 +66,7 @@ void		p(t_param *param)
 	if (len < param->width && !param->flag.minus
 		&& (!param->flag.zero || (param->preci >= 0)))
 		print_width(len, ' ', nb, param);
-	add_pos(param, nb);
+	add_pos(param);
 	if (len < param->width && !param->flag.minus && param->flag.zero)
 		print_width(len, '0', nb, param);
 	print_preci(len, param);
