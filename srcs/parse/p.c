@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 00:04:21 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/27 20:16:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/28 10:16:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void		p(t_param *param)
 
 	nb = (t_ull)va_arg(param->ap, t_ull);
 	ft_utoa_base(nb, 16, 0, &buff);
-	if (param->preci >= 0 && param->preci < 16)
-		param->preci = 16;
 	len = 0;
 	while (buff[len])
 		++len;
@@ -71,8 +69,9 @@ void		p(t_param *param)
 		print_width(len, '0', nb, param);
 	print_preci(len, param);
 	i = 0;
-	while (buff[i])
-		add_char_to_buff(param, buff[i++]);
+	if (param->preci || nb)
+		while (buff[i])
+			add_char_to_buff(param, buff[i++]);
 	if (len < param->width && param->flag.minus)
 		print_width(len, ' ', nb, param);
 }

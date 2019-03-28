@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/27 20:23:11 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/03/28 10:49:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ void		test_printf_functions()
 
 int			main(void)
 {
-	ft_printf("[%p]\n\
+	int nb = 0; ft_printf(
+"[%p]\n\
 [%50p]\n\
 [%4p]\n\
 [%3p]\n\
@@ -233,8 +234,12 @@ int			main(void)
 [%+04.5p]\n\
 [%+05.6p]\n\
 [%+015.18p]\n\
-[%+025.28p]\n"
-, 0);
+[%+025.28p]\n", nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb,
+	nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb,
+	nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb,
+	nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb,
+	nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb,
+	nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb, nb);
 	// ft_printf("%.0p\n", 0);
 	// ft_printf("%b\n", 0);
 	// ft_printf("%b\n", 22708568336987221);
