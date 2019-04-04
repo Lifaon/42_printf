@@ -53,9 +53,9 @@ SRCS =	ft_printf.c \
 		parse/u.c \
 		parse/x.c
 
-.PHONY = all $(OBJS_DIR) $(NAME) del_objs del_exe clean fclean re exe
+.PHONY = all $(OBJS_DIR) $(NAME) clean fclean re
 
-all: $(NAME) test
+all: $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "gcc $(CFLAGS) $(INC) -c $^ -o $(CYA)$@$(EOC)"
@@ -71,28 +71,12 @@ $(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "ranlib $(YEL)$(NAME)$(EOC)"
 	@ranlib $(NAME)
 
-del_objs:
+clean:
 	@echo "$(RED)rm -rf$(EOC) $(OBJS_DIR) from $(DIR_NAME)"
 	@rm -rf $(OBJS_DIR)
 
-del_exe:
+fclean: clean
 	@echo "$(RED)rm -rf$(EOC) $(NAME)"
 	@rm -rf $(NAME)
 
-clean: del_objs
-
-fclean: clean del_exe
-
 re: fclean all
-
-debug: change_cflag all
-
-re_debug: fclean debug
-
-change_cflag:
-	@$(eval CFLAGS = -fsanitize=address)
-
-### TO DELETE BEFORE CORRECTION ###
-test:
-	@echo "$(GRE)gcc $(CFLAGS) main.c -L. -lftprintf$(EOC)"
-	@gcc -w main.c -L. -lftprintf -I includes
