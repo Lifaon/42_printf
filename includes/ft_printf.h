@@ -6,12 +6,15 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 11:47:05 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/04/05 17:42:03 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# include <stdlib.h>
+# include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_dprintf(int fd, const char *fmt, ...);
