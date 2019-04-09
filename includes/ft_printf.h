@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/04/05 17:42:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:27:21 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int		ft_printf(const char *format, ...);
 int		ft_dprintf(int fd, const char *fmt, ...);
 int		ft_sprintf(char *str, const char *fmt, ...);
+int		ft_smprintf(char **str, const char *fmt, ...);
 int		ft_snprintf(char *str, size_t size, const char *fmt, ...);
 
 int		ft_vprintf(const char *fmt, va_list ap);

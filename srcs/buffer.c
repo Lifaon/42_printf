@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/26 20:37:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:14:26 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	print_buff(t_param *param)
 	}
 	if (!param->buff_len)
 		return ;
-	write(param->fd, param->buff, param->buff_len);
+	if (param->fd >= 0)
+		write(param->fd, param->buff, param->buff_len);
 	param->buff_read += param->buff_len;
 	param->buff_len = 0;
 }
