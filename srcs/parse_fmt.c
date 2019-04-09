@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 15:36:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/04/09 19:50:20 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ static void	find_width_preci(t_param *param)
 {
 	if (*param->fmt >= '1' && *param->fmt <= '9')
 		param->width = ft_atoi(param->fmt);
+	else if (*param->fmt == '*')
+	{
+		param->width = va_arg(param->ap, long long);
+		param->fmt++;
+	}
 	while (*param->fmt >= '0' && *param->fmt <= '9')
 		param->fmt++;
 	if (*param->fmt == '.')
@@ -70,6 +75,11 @@ static void	find_width_preci(t_param *param)
 		param->preci = 0;
 		if (*param->fmt >= '0' && *param->fmt <= '9')
 			param->preci = ft_atoi(param->fmt);
+		else if (*param->fmt == '*')
+		{
+			param->preci = va_arg(param->ap, long long);
+			param->fmt++;
+		}
 		while (*param->fmt >= '0' && *param->fmt <= '9')
 			param->fmt++;
 	}
