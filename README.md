@@ -23,7 +23,7 @@ Include the header in your files and compile with library flags.<br />
 #include "ft_printf.h"
 ```
 ```
-$ gcc -L path/to/lib -lft_printf
+$ gcc -I path/to/lib/includes -L path/to/lib -lft_printf
 ```
 You will be able to use **`ft_printf`** and 7 of its already existing variants (fprintf & vfprintf are missing due to function restrictions), in addition to a personnalized variant: **`ft_smprintf`**<br />
 ```C
