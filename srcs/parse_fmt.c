@@ -6,11 +6,16 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/04/09 19:50:20 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/16 23:51:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+static t_func func[TYPE_NB] = {
+	{'c', c}, {'s', s}, {'p', p}, {'d', i}, {'i', i}, {'u', u}, {'o', o},
+	{'x', x}, {'X', x}, {'f', f}, {'b', b}
+};
 
 static void	print_param(t_param *param)
 {
@@ -99,10 +104,10 @@ static void	find_type(t_param *param)
 	j = -1;
 	while (++j < TYPE_NB)
 	{
-		if (*param->fmt == param->func[j].type)
+		if (*param->fmt == func[j].type)
 		{
 			param->type = *(param->fmt++);
-			param->func[j].f(param);
+			func[j].f(param);
 			return ;
 		}
 		else if (*param->fmt == '%')

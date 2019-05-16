@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/04/09 19:53:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/16 23:51:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct	s_param
 	long long	preci;
 	int			size;
 	char		type;
-	t_func		func[TYPE_NB];
 }				t_param;
 
 #endif
