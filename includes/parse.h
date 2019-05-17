@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 17:44:10 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/08 00:06:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/17 11:58:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define PARSE_H
 
 # include <stdarg.h>
+# include "structs.h"
 
+
+void	print_type(t_param *param);
 void	c(t_param *param);
 void	s(t_param *param);
 void	p(t_param *param);

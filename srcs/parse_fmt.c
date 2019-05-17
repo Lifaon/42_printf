@@ -6,45 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/05/16 23:51:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/17 13:37:07 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-static t_func func[TYPE_NB] = {
-	{'c', c}, {'s', s}, {'p', p}, {'d', i}, {'i', i}, {'u', u}, {'o', o},
-	{'x', x}, {'X', x}, {'f', f}, {'b', b}
-};
-
-static void	print_param(t_param *param)
-{
-	char	buff[21];
-	int		i;
-
-	add_char_to_buff(param, '%');
-	if (param->flag.sharp)
-		add_char_to_buff(param, '#');
-	if (param->flag.plus || param->flag.space)
-		add_char_to_buff(param, param->flag.plus ? '+' : ' ');
-	if (param->flag.minus || param->flag.zero)
-		add_char_to_buff(param, param->flag.minus ? '-' : '0');
-	if (param->width > 0)
-	{
-		i = -1;
-		ft_itoa((long long)param->width, &buff);
-		while (buff[++i])
-			add_char_to_buff(param, buff[i]);
-	}
-	if (param->preci > -1)
-	{
-		i = -1;
-		add_char_to_buff(param, '.');
-		ft_itoa((long long)param->preci, &buff);
-		while (buff[++i])
-			add_char_to_buff(param, buff[i]);
-	}
-}
 
 static int	find_flag(t_param *param, char c)
 {
@@ -92,31 +58,23 @@ static void	find_width_preci(t_param *param)
 
 static void	find_type(t_param *param)
 {
-	int j;
+	static t_ptr	funcptr[127] = {NULL};
+	char			size;
 
+	init_func(&funcptr);
+	size = 0;
 	if (*param->fmt == 'h' || *param->fmt == 'l' || *param->fmt == 'L')
 	{
 		param->size = *(param->fmt++) == 'h' ? SHORT : LONG;
+		size = param->size;
 		if ((*param->fmt == 'h' && param->size == SHORT)
 		|| (*param->fmt == 'l' && param->size == LONG))
 			param->size = *(param->fmt++) == 'h' ? SHORTCHAR : LONGLONG;
 	}
-	j = -1;
-	while (++j < TYPE_NB)
-	{
-		if (*param->fmt == func[j].type)
-		{
-			param->type = *(param->fmt++);
-			func[j].f(param);
-			return ;
-		}
-		else if (*param->fmt == '%')
-		{
-			add_char_to_buff(param, *(param->fmt++));
-			return ;
-		}
-	}
-	print_param(param);
+	param->type = (int)(*param->fmt);
+	if (size == 'l' && param->type == 'f')
+		param->size = 0;
+	funcptr[(int)(*param->fmt++)](param);
 }
 
 void		parse_fmt(t_param *param)

@@ -6,14 +6,38 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/05/16 23:50:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/17 12:05:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs.h"
 #include "parse.h"
 
-void		init_param(t_param *param, const char *fmt)
+#include <stdio.h>
+
+void	init_func(t_ptr (*func)[127])
+{
+	int index;
+
+	if ((*func)[0] != NULL)
+		return ;
+	index = -1;
+	while (++index < 127)
+		(*func)[index] = print_type;
+	(*func)['c'] = c;
+	(*func)['s'] = s;
+	(*func)['p'] = p;
+	(*func)['d'] = i;
+	(*func)['i'] = i;
+	(*func)['u'] = u;
+	(*func)['o'] = o;
+	(*func)['x'] = x;
+	(*func)['X'] = x;
+	(*func)['f'] = f;
+	(*func)['b'] = b;
+}
+
+void	init_param(t_param *param, const char *fmt)
 {
 	param->fmt = (char *)fmt;
 	param->str = NULL;

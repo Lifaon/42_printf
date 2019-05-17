@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/03/27 09:55:53 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/05/17 11:57:19 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS =	ft_printf.c \
 		conv/ft_itoa.c \
 		conv/ft_utoa_base.c \
 		\
+		parse/print_type.c \
 		parse/b.c \
 		parse/c.c \
 		parse/f.c \
