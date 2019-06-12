@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/25 15:41:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:42:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_vprintf(const char *fmt, va_list ap)
 		return (-1);
 	init_param(&param, fmt);
 	va_copy(param.ap, ap);
-	parse_fmt(&param);
+	print_fmt(&param);
 	return (param.buff_read);
 }
 
@@ -33,7 +33,7 @@ int		ft_vdprintf(int fd, const char *fmt, va_list ap)
 	init_param(&param, fmt);
 	param.fd = fd;
 	va_copy(param.ap, ap);
-	parse_fmt(&param);
+	print_fmt(&param);
 	return (param.buff_read);
 }
 
@@ -46,7 +46,7 @@ int		ft_vsprintf(char *str, const char *fmt, va_list ap)
 	init_param(&param, fmt);
 	param.str = str;
 	va_copy(param.ap, ap);
-	parse_fmt(&param);
+	print_fmt(&param);
 	return (param.buff_read);
 }
 
@@ -61,6 +61,6 @@ int		ft_vsnprintf(char *str, size_t size, const char *fmt, va_list ap)
 	param.buff_max = size;
 	param.is_maxed = TRUE;
 	va_copy(param.ap, ap);
-	parse_fmt(&param);
+	print_fmt(&param);
 	return (param.buff_read);
 }

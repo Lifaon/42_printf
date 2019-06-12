@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#              #
-#    Updated: 2019/05/17 11:57:19 by mlantonn         ###   ########.fr        #
+#    Updated: 2019/06/12 18:11:15 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 SRCS_DIR = srcs
 SRCS =	ft_printf.c \
 		ft_vprintf.c \
+		ft_printf_static.c \
 		buffer.c \
 		init_param.c \
 		parse_fmt.c \

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/05/17 13:37:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:43:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,10 @@ void		parse_fmt(t_param *param)
 			find_type(param);
 		}
 	}
+}
+
+void		print_fmt(t_param *param)
+{
+	parse_fmt(param);
 	print_buff(param);
 }

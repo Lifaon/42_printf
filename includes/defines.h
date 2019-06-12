@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/03/06 23:45:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:55:44 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define FALSE 0
 # define TRUE 1
 
-# define BUFF_SIZE 4096
+# define BUFF_SIZE 16384
 
 # define TYPE_NB 11
 
