@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/06/12 18:43:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/07/23 23:32:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	print_fmt(t_param *param);
 void	print_buff(t_param *param);
 void	add_char_to_buff(t_param *param, char c);
 
-void	init_func(t_ptr (*func)[127]);
+void	init_func(t_ptr func[127]);
 
 #endif

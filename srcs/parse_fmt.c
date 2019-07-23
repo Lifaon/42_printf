@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:00:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2019/06/12 18:43:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/07/23 23:32:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	find_type(t_param *param)
 	static t_ptr	funcptr[127] = {NULL};
 	char			size;
 
-	init_func(&funcptr);
+	init_func(funcptr);
 	size = 0;
 	if (*param->fmt == 'h' || *param->fmt == 'l' || *param->fmt == 'L')
 	{
